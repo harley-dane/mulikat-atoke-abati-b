@@ -1,22 +1,26 @@
 // server/seed.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { createApi } from "unsplash-js";
-import nodeFetch from "node-fetch";
 import Project from "./src/models/Project.js";
 import Post from "./src/models/Post.js";
 import Leadership from "./src/models/Leadership.js";
 import Staff from "./src/models/Staff.js";
 import Job from "./src/models/Job.js";
+import Contact from "./src/models/Contact.js";
 
 // Configure dotenv
 dotenv.config();
 
-// Initialize Unsplash API
-const unsplash = createApi({
-  accessKey: process.env.UNSPLASH_ACCESS_KEY,
-  fetch: nodeFetch,
-});
+// Verify MONGO_URI
+if (!process.env.MONGO_URI) {
+  console.error("Error: MONGO_URI is not defined in .env file");
+  process.exit(1);
+}
+
+// Base URL for assets
+const ASSET_BASE_URL = process.env.NODE_ENV === "production"
+  ? "https://mulikat-atoke-abati-b.onrender.com"
+  : "http://localhost:5000";
 
 // MongoDB connection
 const connectDB = async () => {
@@ -26,24 +30,6 @@ const connectDB = async () => {
   } catch (err) {
     console.error("MongoDB connection error:", err.message);
     process.exit(1);
-  }
-};
-
-// Fetch Unsplash image URL by query
-const fetchImage = async (query) => {
-  try {
-    const result = await unsplash.search.getPhotos({
-      query,
-      perPage: 1,
-      orientation: "landscape",
-    });
-    if (result.response && result.response.results.length > 0) {
-      return result.response.results[0].urls.regular;
-    }
-    return "https://via.placeholder.com/300"; // Fallback image
-  } catch (err) {
-    console.error(`Error fetching image for query "${query}":`, err.message);
-    return "https://via.placeholder.com/300";
   }
 };
 
@@ -57,39 +43,137 @@ const seedData = async () => {
       Leadership.deleteMany({}),
       Staff.deleteMany({}),
       Job.deleteMany({}),
+      Contact.deleteMany({}),
     ]);
     console.log("Cleared existing data");
 
-    // Fetch images
-    const projectImages = await Promise.all([
-      fetchImage("rainforest"),
-      fetchImage("education"),
-    ]);
-    const postImages = await Promise.all([
-      fetchImage("community"),
-      fetchImage("nature"),
-    ]);
-    const leadershipImages = await Promise.all([
-      fetchImage("professional portrait"),
-      fetchImage("business person"),
-    ]);
-    const staffImages = await Promise.all([
-      fetchImage("team member"),
-      fetchImage("worker"),
-    ]);
+    // Define asset paths
+    const projectImages = [
+      `${ASSET_BASE_URL}/assets/proj1.jpg`,
+      `${ASSET_BASE_URL}/assets/proj2.jpg`,
+      `${ASSET_BASE_URL}/assets/proj3.jpg`,
+      `${ASSET_BASE_URL}/assets/proj4.jpg`,
+      `${ASSET_BASE_URL}/assets/proj5.jpg`,
+      `${ASSET_BASE_URL}/assets/proj6.jpg`,
+      `${ASSET_BASE_URL}/assets/proj7.jpg`,
+      `${ASSET_BASE_URL}/assets/proj17.jpg`, // Video for Community Clean Energy
+      `${ASSET_BASE_URL}/assets/proj9.jpg`,
+      `${ASSET_BASE_URL}/assets/proj10.jpg`,
+      `${ASSET_BASE_URL}/assets/proj20.jpg`,
+      `${ASSET_BASE_URL}/assets/proj12.jpg`,
+      `${ASSET_BASE_URL}/assets/proj13.jpg`,
+      `${ASSET_BASE_URL}/assets/proj14.jpg`,
+      
+    ];
+    const postImages = [
+      `${ASSET_BASE_URL}/assets/proj3.jpg`,
+      `${ASSET_BASE_URL}/assets/proj4.jpg`,
+    ];
+    const leadershipImages = [
+      `${ASSET_BASE_URL}/assets/lider1.png`,
+      `${ASSET_BASE_URL}/assets/lider2.jpg`,
+    ];
+    const staffImages = [
+      `${ASSET_BASE_URL}/assets/staf5.jpg`,
+      `${ASSET_BASE_URL}/assets/staf6.jpg`,
+     
+    ];
 
     // Seed Projects
     const projects = [
       {
         title: "Reforestation Initiative",
         description: "Planting 10,000 trees to restore Costa Rica’s rainforests.",
-        image: projectImages[0],
+        image: projectImages[0], // proj1.jpg
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: false,
       },
       {
         title: "Education for All",
         description: "Providing scholarships and resources to rural schools.",
-        image: projectImages[1],
+        image: projectImages[1], // proj2.jpg
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: false,
       },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[2], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[3], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[4], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[5], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[6], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[7], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[8], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[9], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[10], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[11], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[12], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      }
+      
+      
     ];
     await Project.insertMany(projects);
     console.log("Seeded Projects");
@@ -98,13 +182,13 @@ const seedData = async () => {
     const posts = [
       {
         title: "Impact of Our 2024 Projects",
-        content: "Learn how our reforestation and education initiatives made a difference this year.",
-        image: postImages[0],
+        content: "Learn how our healthcare and education initiatives made a difference this year.",
+        image: postImages[0], // proj3.jpg
       },
       {
-        title: "Community Stories: Maria’s Journey",
-        content: "Maria, a scholarship recipient, shares her story of pursuing education in rural Costa Rica.",
-        image: postImages[1],
+        title: "Community Stories: Ajoke's Journey",
+        content: "Ajoke, a scholarship recipient, shares her story of pursuing education in rural Nigeria.",
+        image: postImages[1], // proj4.jpg
       },
     ];
     await Post.insertMany(posts);
@@ -113,16 +197,16 @@ const seedData = async () => {
     // Seed Leadership
     const leadership = [
       {
-        name: "Ana Morales",
-        title: "Executive Director",
-        bio: "Ana has led Amigos of Costa Rica for over a decade, driving initiatives in education and conservation. She holds a PhD in Environmental Science.",
-        image: leadershipImages[0],
+        name: "Alhaji Aliu Abati",
+        position: "Executive Director",
+        bio: "Alhaji Aliu has led Muikat Atoke Abati Foundation since the beginning, driving initiatives in education and conservation.",
+        image: leadershipImages[0], // lider1.png
       },
       {
-        name: "Carlos Rivera",
-        title: "Program Director",
-        bio: "Carlos oversees project implementation, with 15 years of experience in nonprofit management.",
-        image: leadershipImages[1],
+        name: "Lukman Bado",
+        position: "Program Director",
+        bio: "Lukman oversees project implementation, with 15 years of experience in nonprofit management.",
+        image: leadershipImages[1], // lider2.jpg
       },
     ];
     await Leadership.insertMany(leadership);
@@ -131,17 +215,20 @@ const seedData = async () => {
     // Seed Staff
     const staff = [
       {
-        name: "Sofia Hernandez",
+        name: "Yemisi Ojo",
         role: "Community Outreach Coordinator",
-        bio: "Sofia engages with local communities to identify needs and coordinate projects.",
-        image: staffImages[0],
+        bio: "Yemisi engages with local communities to identify needs and coordinate projects.",
+        image: staffImages[0], // staf5.jpg
+        isVideo: false,
       },
       {
-        name: "Luis Vargas",
+        name: "Ganiu Wale",
         role: "Conservation Specialist",
-        bio: "Luis works on environmental projects, specializing in reforestation and wildlife protection.",
-        image: staffImages[1],
+        bio: "Ganiu works on environmental projects, specializing in reforestation and wildlife protection.",
+        image: staffImages[1], // staf6.jpg
+        isVideo: false,
       },
+      
     ];
     await Staff.insertMany(staff);
     console.log("Seeded Staff");
@@ -150,8 +237,8 @@ const seedData = async () => {
     const jobs = [
       {
         title: "Project Manager",
-        description: "Lead community development projects in Costa Rica. Requires 5+ years of experience.",
-        location: "San José, Costa Rica",
+        description: "Lead community development projects in Nigeria. Requires 5+ years of experience.",
+        location: "Lagos, Nigeria",
       },
       {
         title: "Fundraising Coordinator",
@@ -161,6 +248,13 @@ const seedData = async () => {
     ];
     await Job.insertMany(jobs);
     console.log("Seeded Jobs");
+
+    // Seed Contacts
+    await Contact.insertMany([
+      { name: "John Doe", email: "john@example.com", message: "Interested in volunteering!" },
+      { name: "Jane Smith", email: "jane@example.com", message: "How can I support your projects?" },
+    ]);
+    console.log("Seeded Contacts");
 
     console.log("Seeding completed successfully!");
   } catch (err) {

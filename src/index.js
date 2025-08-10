@@ -9,6 +9,7 @@ console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? "Set" : "Not s
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import path from "path";
 import projectRoutes from "./routes/projects.js";
 import donationRoutes from "./routes/donations.js";
 import contactRoutes from "./routes/contact.js";
@@ -20,10 +21,36 @@ import staffRoutes from "./routes/staff.js";
 import jobRoutes from "./routes/jobs.js";
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
+// Allow multiple origins for development and production
+const allowedOrigins = [
+  "https://mulikat-atoke-abati-f.onrender.com",
+  "http://localhost:3000",
+];
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+app.use(express.json());
+app.use("/assets", express.static(path.join(process.cwd(), "assets")));
+
+// Log incoming requests
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB error:", err));
 
@@ -36,6 +63,11 @@ app.use("/api/crypto", cryptoRoutes);
 app.use("/api/leadership", leadershipRoutes);
 app.use("/api/staff", staffRoutes);
 app.use("/api/jobs", jobRoutes);
+
+// Catch-all route
+app.use((req, res) => {
+  res.status(404).json({ message: "Endpoint not found" });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
