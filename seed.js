@@ -82,8 +82,8 @@ const seedData = async () => {
     // Seed Projects
     const projects = [
       {
-        title: "Reforestation Initiative",
-        description: "Planting 10,000 trees to restore Costa Rica’s rainforests.",
+        title: "Taking care vulnarable",
+        description: "Providing support, protection, and compassion to those who are at risk or unable to care for themselves..",
         image: projectImages[0], // proj1.jpg
         link: "https://mulikat-atoke-abati-f.onrender.com/",
         isVideo: false,
