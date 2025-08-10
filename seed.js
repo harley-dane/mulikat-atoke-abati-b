@@ -71,7 +71,7 @@ const seedData = async () => {
     ];
     const leadershipImages = [
       `${ASSET_BASE_URL}/assets/lider1.png`,
-      `${ASSET_BASE_URL}/assets/lider2.jpg`,
+      `${ASSET_BASE_URL}/assets/lider3.jpg`,
     ];
     const staffImages = [
       `${ASSET_BASE_URL}/assets/staf5.jpg`,
