@@ -70,12 +70,15 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/proj4.jpg`,
     ];
     const leadershipImages = [
-      `${ASSET_BASE_URL}/assets/lider1.png`,
-      `${ASSET_BASE_URL}/assets/lider3.jpg`,
+      `${ASSET_BASE_URL}/assets/mojeed.jpg`,
+      `${ASSET_BASE_URL}/assets/yemisi.jpg`,
+      `${ASSET_BASE_URL}/assets/Abimbola.jpg`,
+      `${ASSET_BASE_URL}/assets/harley.png`,
+      `${ASSET_BASE_URL}/assets/aliu.png`,
     ];
     const staffImages = [
-      `${ASSET_BASE_URL}/assets/staf5.jpg`,
-      `${ASSET_BASE_URL}/assets/staf6.jpg`,
+      `${ASSET_BASE_URL}/assets/ibrhim.png`,
+      `${ASSET_BASE_URL}/assets/aliu.png`,
      
     ];
 
@@ -197,16 +200,34 @@ const seedData = async () => {
     // Seed Leadership
     const leadership = [
       {
-        name: "Alhaji Aliu Abati",
-        position: "Executive Director",
-        bio: "Alhaji Aliu has led Muikat Atoke Abati Foundation since the beginning, driving initiatives in education and conservation.",
+        name: "Lukman .m.o Abati",
+        position: "Founder",
+        bio: "Lukman .m.o Abati has led Muikat Atoke Abati Foundation since the beginning, driving initiatives in education and conservation.",
         image: leadershipImages[0], // lider1.png
       },
       {
-        name: "Lukman Bado",
-        position: "Program Director",
-        bio: "Lukman oversees project implementation, with 15 years of experience in nonprofit management.",
+        name: "Oluwayemisi o Abat",
+        position: "Co Founder",
+        bio: "Oluwayemisi  oversees project implementation, since the beginning of Muikat Atoke Abati Foundation.",
         image: leadershipImages[1], // lider2.jpg
+      },
+      {
+        name: "Abimbola Abati",
+        position: "Co Founder",
+        bio: "Abimbola Abati is one of the founder, since the beginning of Muikat Atoke Abati Foundation.",
+        image: leadershipImages[2], // lider2.jpg
+      },
+      {
+        name: "Harley Clair",
+        position: "Co Founder",
+        bio: "Harley Clair is one of the founder, since the beginning of Muikat Atoke Abati Foundation.",
+        image: leadershipImages[3], // lider2.jpg
+      },
+      {
+        name: "Aliu Abati",
+        position: "Co Founder",
+        bio: "Aliu Abati is one of the founder, since the beginning of Muikat Atoke Abati Foundation.",
+        image: leadershipImages[4], // lider2.jpg
       },
     ];
     await Leadership.insertMany(leadership);
@@ -215,16 +236,16 @@ const seedData = async () => {
     // Seed Staff
     const staff = [
       {
-        name: "Yemisi Ojo",
+        name: "Aliu Abati",
         role: "Community Outreach Coordinator",
-        bio: "Yemisi engages with local communities to identify needs and coordinate projects.",
+        bio: "Aliu engages with local communities to identify needs and coordinate projects.",
         image: staffImages[0], // staf5.jpg
         isVideo: false,
       },
       {
-        name: "Ganiu Wale",
+        name: "Ibrahim",
         role: "Conservation Specialist",
-        bio: "Ganiu works on environmental projects, specializing in reforestation and wildlife protection.",
+        bio: "Ibrahim works on environmental projects, specializing in reforestation and wildlife protection.",
         image: staffImages[1], // staf6.jpg
         isVideo: false,
       },
