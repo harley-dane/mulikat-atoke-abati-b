@@ -244,14 +244,14 @@ const seedData = async () => {
     // Seed Staff
     const staff = [
       {
-        name: "Aliu Abati",
+        name: "Ibrahim",
         role: "Community Outreach Coordinator",
         bio: "Aliu engages with local communities to identify needs and coordinate projects.",
         image: staffImages[0], // staf5.jpg
         isVideo: false,
       },
       {
-        name: "Ibrahim",
+        name: "Aliu Abati",
         role: "Conservation Specialist",
         bio: "Ibrahim works on environmental projects, specializing in reforestation and wildlife protection.",
         image: staffImages[1], // staf6.jpg
