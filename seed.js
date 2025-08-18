@@ -244,7 +244,7 @@ const seedData = async () => {
     // Seed Staff
     const staff = [
       {
-        name: "Rodiat",
+        name: "Rodiat Abati",
         role: "Community Outreach Coordinator",
         bio: "Aliu engages with local communities to identify needs and coordinate projects.",
         image: staffImages[0], // staf5.jpg
