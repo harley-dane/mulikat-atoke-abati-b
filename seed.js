@@ -78,7 +78,7 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/aliu.png`,
     ];
     const staffImages = [
-      `${ASSET_BASE_URL}/assets/ibrhim.png`,
+      `${ASSET_BASE_URL}/assets/rodiat.jpg`,
       `${ASSET_BASE_URL}/assets/aliu.png`,
      
     ];
@@ -244,7 +244,7 @@ const seedData = async () => {
     // Seed Staff
     const staff = [
       {
-        name: "Ibrahim",
+        name: "Rodiat",
         role: "Community Outreach Coordinator",
         bio: "Aliu engages with local communities to identify needs and coordinate projects.",
         image: staffImages[0], // staf5.jpg
