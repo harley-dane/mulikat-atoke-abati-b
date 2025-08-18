@@ -63,6 +63,7 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/proj12.jpg`,
       `${ASSET_BASE_URL}/assets/proj13.jpg`,
       `${ASSET_BASE_URL}/assets/proj14.jpg`,
+      `${ASSET_BASE_URL}/assets/proj19.jpg`,
       
     ];
     const postImages = [
@@ -172,6 +173,13 @@ const seedData = async () => {
         title: "Community Clean Energy",
         description: "Implementing solar energy solutions in rural areas.",
         image: projectImages[12], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: true,
+      },
+      {
+        title: "Community Clean Energy",
+        description: "Implementing solar energy solutions in rural areas.",
+        image: projectImages[13], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
         isVideo: true,
       }
