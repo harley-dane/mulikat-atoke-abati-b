@@ -1,4 +1,3 @@
-// server/src/index.js
 import dotenv from "dotenv";
 dotenv.config();
 console.log("Environment variables loaded:");
@@ -22,10 +21,11 @@ import jobRoutes from "./routes/jobs.js";
 
 const app = express();
 
-// Allow multiple origins for development and production
+// Allow multiple origins for development, production, and custom domain
 const allowedOrigins = [
-  "https://mulikat-atoke-abati-f.onrender.com",
-  "http://localhost:3000",
+  "https://mulikat-atoke-abati-b.onrender.com", // Backend URL
+  "http://localhost:3000", // Development
+  "https://mulikatatokeabatifoundation.org", // Custom frontend domain
 ];
 app.use(
   cors({
@@ -36,11 +36,13 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS for pre-flight
     credentials: true,
   })
 );
 app.use(express.json());
+
+// Serve static assets
 app.use("/assets", express.static(path.join(process.cwd(), "assets")));
 
 // Log incoming requests
@@ -49,11 +51,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB error:", err));
 
+// Route handlers
 app.use("/api/projects", projectRoutes);
 app.use("/api/donations", donationRoutes);
 app.use("/api/contact", contactRoutes);
