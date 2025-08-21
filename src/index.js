@@ -28,6 +28,7 @@ const allowedOrigins = [
   "https://mulikat-atoke-abati-b.onrender.com",
   "https://mulikat-atoke-abati-f.onrender.com",
   "https://mulikatatokeabatifoundation.org",
+  "https://api.mulikatatokeabatifoundation.org",
   "http://localhost:3000",
 ];
 app.use(
@@ -56,10 +57,7 @@ app.use((req, res, next) => {
 
 // MongoDB connection
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => {
     console.error("MongoDB connection error:", err.message);
