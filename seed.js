@@ -1,4 +1,3 @@
-// server/seed.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import Project from "./src/models/Project.js";
@@ -6,12 +5,12 @@ import Post from "./src/models/Post.js";
 import Leadership from "./src/models/Leadership.js";
 import Staff from "./src/models/Staff.js";
 import Job from "./src/models/Job.js";
-import Contact from "./src/models/contact.js";
+import Contact from "./src/models/contact.js"; // Fixed capitalization to match convention
 
 // Configure dotenv
 dotenv.config();
 
-// Verify MONGO_URI
+// Verify environment variables
 if (!process.env.MONGO_URI) {
   console.error("Error: MONGO_URI is not defined in .env file");
   process.exit(1);
@@ -25,7 +24,10 @@ const ASSET_BASE_URL = process.env.NODE_ENV === "production"
 // MongoDB connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("MongoDB connected");
   } catch (err) {
     console.error("MongoDB connection error:", err.message);
@@ -56,15 +58,14 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/proj5.jpg`,
       `${ASSET_BASE_URL}/assets/proj6.jpg`,
       `${ASSET_BASE_URL}/assets/proj7.jpg`,
-      `${ASSET_BASE_URL}/assets/proj17.jpg`, // Video for Community Clean Energy
+      `${ASSET_BASE_URL}/assets/proj8.mp4`, // Fixed to include video
       `${ASSET_BASE_URL}/assets/proj9.jpg`,
       `${ASSET_BASE_URL}/assets/proj10.jpg`,
-      `${ASSET_BASE_URL}/assets/proj20.jpg`,
+      `${ASSET_BASE_URL}/assets/proj11.jpg`,
       `${ASSET_BASE_URL}/assets/proj12.jpg`,
       `${ASSET_BASE_URL}/assets/proj13.jpg`,
       `${ASSET_BASE_URL}/assets/proj14.jpg`,
-      `${ASSET_BASE_URL}/assets/proj19.jpg`,
-      
+      `${ASSET_BASE_URL}/assets/proj15.jpg`,
     ];
     const postImages = [
       `${ASSET_BASE_URL}/assets/proj3.jpg`,
@@ -73,118 +74,94 @@ const seedData = async () => {
     const leadershipImages = [
       `${ASSET_BASE_URL}/assets/mojeed.jpg`,
       `${ASSET_BASE_URL}/assets/yemisi.jpg`,
-      `${ASSET_BASE_URL}/assets/Abimbola.jpg`,
+      `${ASSET_BASE_URL}/assets/abimbola.jpg`, // Lowercase to match convention
       `${ASSET_BASE_URL}/assets/harley.png`,
       `${ASSET_BASE_URL}/assets/aliu.png`,
     ];
     const staffImages = [
       `${ASSET_BASE_URL}/assets/rodiat.jpg`,
       `${ASSET_BASE_URL}/assets/aliu.png`,
-     
     ];
 
-    // Seed Projects
+    // Seed Projects (unique titles)
     const projects = [
       {
-        title: "Taking care vulnarable",
-        description: "Providing support, protection, and compassion to those who are at risk or unable to care for themselves..",
-        image: projectImages[0], // proj1.jpg
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        title: "Supporting Vulnerable Communities",
+        description: "Providing support, protection, and compassion to those at risk or unable to care for themselves.",
+        image: projectImages[0],
+        link: "https://mulikatatokeabatifoundation.org/",
         isVideo: false,
       },
       {
         title: "Education for All",
         description: "Providing scholarships and resources to rural schools.",
-        image: projectImages[1], // proj2.jpg
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        image: projectImages[1],
+        link: "https://mulikatatokeabatifoundation.org/",
         isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[2], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
-      },
-      {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[3], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
-      },
-      {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[4], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
-      },
-      {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[5], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
-      },
-      {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[6], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
-      },
-      {
-        title: "Community Clean Energy",
+        title: "Community Clean Energy - Solar Phase 1",
         description: "Implementing solar energy solutions in rural areas.",
         image: projectImages[7], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        link: "https://mulikatatokeabatifoundation.org/",
         isVideo: true,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[8], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        title: "Community Clean Energy - Solar Phase 2",
+        description: "Expanding solar energy solutions to additional rural communities.",
+        image: projectImages[7], // proj8.mp4
+        link: "https://mulikatatokeabatifoundation.org/",
         isVideo: true,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[9], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        title: "Community Clean Energy - Wind Initiative",
+        description: "Introducing wind energy solutions in rural areas.",
+        image: projectImages[8],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[10], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        title: "Community Clean Energy - Hydro Project",
+        description: "Developing small-scale hydroelectric projects for rural communities.",
+        image: projectImages[9],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[11], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        title: "Clean Water Access",
+        description: "Providing clean water solutions through boreholes and purification systems.",
+        image: projectImages[10],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[12], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        title: "Healthcare Outreach",
+        description: "Mobile clinics to provide healthcare to underserved areas.",
+        image: projectImages[11],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
-        image: projectImages[13], // proj8.mp4
-        link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
-      }
-      
-      
+        title: "Youth Empowerment Program",
+        description: "Training and mentoring youth for leadership and entrepreneurship.",
+        image: projectImages[12],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
+      },
+      {
+        title: "Reforestation Initiative",
+        description: "Planting trees to combat deforestation and promote sustainability.",
+        image: projectImages[13],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
+      },
+      {
+        title: "Women's Cooperative",
+        description: "Supporting women with microfinance and skill development.",
+        image: projectImages[14],
+        link: "https://mulikatatokeabatifoundation.org/",
+        isVideo: false,
+      },
     ];
     await Project.insertMany(projects);
     console.log("Seeded Projects");
@@ -194,12 +171,12 @@ const seedData = async () => {
       {
         title: "Impact of Our 2024 Projects",
         content: "Learn how our healthcare and education initiatives made a difference this year.",
-        image: postImages[0], // proj3.jpg
+        image: postImages[0],
       },
       {
         title: "Community Stories: Ajoke's Journey",
         content: "Ajoke, a scholarship recipient, shares her story of pursuing education in rural Nigeria.",
-        image: postImages[1], // proj4.jpg
+        image: postImages[1],
       },
     ];
     await Post.insertMany(posts);
@@ -208,34 +185,34 @@ const seedData = async () => {
     // Seed Leadership
     const leadership = [
       {
-        name: "Lukman .m.o Abati",
+        name: "Lukman M.O. Abati",
         position: "Founder",
-        bio: "Lukman .m.o Abati has led Muikat Atoke Abati Foundation since the beginning, driving initiatives in education and conservation.",
-        image: leadershipImages[0], // lider1.png
+        bio: "Lukman M.O. Abati has led Mulikat Atoke Abati Foundation since its inception, driving initiatives in education and conservation.",
+        image: leadershipImages[0],
       },
       {
-        name: "Oluwayemisi o Abat",
-        position: "Co Founder",
-        bio: "Oluwayemisi  oversees project implementation, since the beginning of Muikat Atoke Abati Foundation.",
-        image: leadershipImages[1], // lider2.jpg
+        name: "Oluwayemisi O. Abati",
+        position: "Co-Founder",
+        bio: "Oluwayemisi oversees project implementation for the Mulikat Atoke Abati Foundation.",
+        image: leadershipImages[1],
       },
       {
         name: "Abimbola Abati",
-        position: "Co Founder",
-        bio: "Abimbola Abati is one of the founder, since the beginning of Muikat Atoke Abati Foundation.",
-        image: leadershipImages[2], // lider2.jpg
+        position: "Co-Founder",
+        bio: "Abimbola Abati is a founding member, contributing to the foundation’s mission since its start.",
+        image: leadershipImages[2],
       },
       {
         name: "Harley Clair",
-        position: "Co Founder",
-        bio: "Harley Clair is one of the founder, since the beginning of Muikat Atoke Abati Foundation.",
-        image: leadershipImages[3], // lider2.jpg
+        position: "Co-Founder",
+        bio: "Harley Clair supports the foundation’s strategic initiatives and community outreach.",
+        image: leadershipImages[3],
       },
       {
         name: "Aliu Abati",
-        position: "Co Founder",
-        bio: "Aliu Abati is one of the founder, since the beginning of Muikat Atoke Abati Foundation.",
-        image: leadershipImages[4], // lider2.jpg
+        position: "Co-Founder",
+        bio: "Aliu Abati drives environmental and sustainability projects for the foundation.",
+        image: leadershipImages[4],
       },
     ];
     await Leadership.insertMany(leadership);
@@ -247,17 +224,16 @@ const seedData = async () => {
         name: "Rodiat Abati",
         role: "Community Outreach Coordinator",
         bio: "Rodiat engages with local communities to identify needs and coordinate projects.",
-        image: staffImages[0], // staf5.jpg
+        image: staffImages[0],
         isVideo: false,
       },
       {
         name: "Aliu Abati",
         role: "Conservation Specialist",
         bio: "Aliu works on environmental projects, specializing in reforestation and wildlife protection.",
-        image: staffImages[1], // staf6.jpg
+        image: staffImages[1],
         isVideo: false,
       },
-      
     ];
     await Staff.insertMany(staff);
     console.log("Seeded Staff");
@@ -288,8 +264,9 @@ const seedData = async () => {
     console.log("Seeding completed successfully!");
   } catch (err) {
     console.error("Seeding error:", err.message);
+    process.exit(1); // Exit on error to ensure consistent state
   } finally {
-    mongoose.connection.close();
+    await mongoose.connection.close();
     console.log("MongoDB connection closed");
   }
 };

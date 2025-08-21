@@ -1,9 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 console.log("Environment variables loaded:");
-console.log("PORT:", process.env.PORT);
+console.log("PORT:", process.env.PORT || "Not set");
 console.log("MONGO_URI:", process.env.MONGO_URI ? "Set" : "Not set");
 console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? "Set" : "Not set");
+console.log("PAYPAL_CLIENT_ID:", process.env.PAYPAL_CLIENT_ID ? "Set" : "Not set");
+console.log("PAYPAL_CLIENT_SECRET:", process.env.PAYPAL_CLIENT_SECRET ? "Set" : "Not set");
 
 import express from "express";
 import cors from "cors";
@@ -24,8 +26,9 @@ const app = express();
 // CORS configuration
 const allowedOrigins = [
   "https://mulikat-atoke-abati-b.onrender.com",
-  "http://localhost:3000",
+  "https://mulikat-atoke-abati-f.onrender.com",
   "https://mulikatatokeabatifoundation.org",
+  "http://localhost:3000",
 ];
 app.use(
   cors({
@@ -53,11 +56,14 @@ app.use((req, res, next) => {
 
 // MongoDB connection
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => {
-    console.error("MongoDB error:", err);
-    process.exit(1); // Exit if connection fails
+    console.error("MongoDB connection error:", err.message);
+    process.exit(1);
   });
 
 // Route handlers
@@ -71,14 +77,18 @@ app.use("/api/leadership", leadershipRoutes);
 app.use("/api/staff", staffRoutes);
 app.use("/api/jobs", jobRoutes);
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK", message: "Server is running" });
+});
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(`Error: ${err.message}\nStack: ${err.stack}`);
   res.status(err.status || 500).json({
-    message: 'Internal Server Error',
+    message: "Internal Server Error",
     error: err.message,
-    // Remove stack in production for security
-    stack: process.env.NODE_ENV === 'production' ? undefined : err.stack,
+    stack: process.env.NODE_ENV === "production" ? undefined : err.stack,
   });
 });
 

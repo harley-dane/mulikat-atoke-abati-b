@@ -1,13 +1,26 @@
-// server/src/routes/donations.js
 import express from "express";
 import Stripe from "stripe";
 
 const router = express.Router();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-router.post("/create-checkout-session", async (req, res) => {
+let stripe;
+try {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    console.warn("Warning: STRIPE_SECRET_KEY is not set. Stripe routes will be disabled.");
+  } else {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  }
+} catch (err) {
+  console.error("Error initializing Stripe:", err.message);
+}
+
+router.post("/create-checkout-session", async (req, res, next) => {
+  if (!stripe) {
+    return res.status(503).json({ message: "Stripe is not configured. Please contact the administrator." });
+  }
   try {
     const { amount, projectId } = req.body;
+    console.log("Creating checkout session:", { amount, projectId });
     if (!amount || amount <= 0) {
       return res.status(400).json({ message: "Invalid amount" });
     }
@@ -20,18 +33,19 @@ router.post("/create-checkout-session", async (req, res) => {
             product_data: {
               name: projectId ? `Donation for Project ${projectId}` : "General Donation",
             },
-            unit_amount: amount * 100, // Convert to cents
+            unit_amount: amount * 100,
           },
           quantity: 1,
         },
       ],
       mode: "payment",
-      success_url: `https://mulikat-atoke-abati-f.onrender.com/donate?success=true`,
-      cancel_url: `https://mulikat-atoke-abati-f.onrender.com/donate?canceled=true`,
+      success_url: `https://mulikatatokeabatifoundation.org/donate?success=true`,
+      cancel_url: `https://mulikatatokeabatifoundation.org/donate?canceled=true`,
     });
     res.json({ id: session.id });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Error creating checkout session:", err.message);
+    next(err);
   }
 });
 

@@ -1,16 +1,19 @@
-// server/src/routes/staff.js
 import express from "express";
 import Staff from "../models/Staff.js";
 
 const router = express.Router();
 
-// Get all staff members
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
+    console.log("Fetching staff");
     const staff = await Staff.find();
+    if (!staff || staff.length === 0) {
+      return res.status(404).json({ message: "No staff found" });
+    }
     res.json(staff);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Error fetching staff:", err.message);
+    next(err);
   }
 });
 
