@@ -6,7 +6,7 @@ import Post from "./src/models/Post.js";
 import Leadership from "./src/models/Leadership.js";
 import Staff from "./src/models/Staff.js";
 import Job from "./src/models/Job.js";
-import Contact from "./src/models/Contact.js";
+import Contact from "./src/models/contact.js";
 
 // Configure dotenv
 dotenv.config();
