@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 console.log("Environment variables loaded:");
 console.log("PORT:", process.env.PORT);
-console.log("MONGO_URI:", process.env.MONGO_URI);
+console.log("MONGO_URI:", process.env.MONGO_URI ? "Set" : "Not set");
 console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? "Set" : "Not set");
 
 import express from "express";
@@ -21,11 +21,11 @@ import jobRoutes from "./routes/jobs.js";
 
 const app = express();
 
-// Allow multiple origins for development, production, and custom domain
+// CORS configuration
 const allowedOrigins = [
-  "https://mulikat-atoke-abati-b.onrender.com", // Backend URL
-  "http://localhost:3000", // Development
-  "https://mulikatatokeabatifoundation.org", // Custom frontend domain
+  "https://mulikat-atoke-abati-b.onrender.com",
+  "http://localhost:3000",
+  "https://mulikatatokeabatifoundation.org",
 ];
 app.use(
   cors({
@@ -36,7 +36,7 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS for pre-flight
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
@@ -55,7 +55,10 @@ app.use((req, res, next) => {
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB error:", err));
+  .catch((err) => {
+    console.error("MongoDB error:", err);
+    process.exit(1); // Exit if connection fails
+  });
 
 // Route handlers
 app.use("/api/projects", projectRoutes);
@@ -67,6 +70,16 @@ app.use("/api/crypto", cryptoRoutes);
 app.use("/api/leadership", leadershipRoutes);
 app.use("/api/staff", staffRoutes);
 app.use("/api/jobs", jobRoutes);
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(`Error: ${err.message}\nStack: ${err.stack}`);
+  res.status(500).json({
+    message: "Internal Server Error",
+    error: err.message,
+    stack: err.stack, // Remove in production for security
+  });
+});
 
 // Catch-all route
 app.use((req, res) => {
