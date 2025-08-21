@@ -74,10 +74,11 @@ app.use("/api/jobs", jobRoutes);
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(`Error: ${err.message}\nStack: ${err.stack}`);
-  res.status(500).json({
-    message: "Internal Server Error",
+  res.status(err.status || 500).json({
+    message: 'Internal Server Error',
     error: err.message,
-    stack: err.stack, // Remove in production for security
+    // Remove stack in production for security
+    stack: process.env.NODE_ENV === 'production' ? undefined : err.stack,
   });
 });
 
