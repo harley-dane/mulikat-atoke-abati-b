@@ -1,12 +1,4 @@
 import dotenv from "dotenv";
-dotenv.config();
-console.log("Environment variables loaded:");
-console.log("PORT:", process.env.PORT || "Not set");
-console.log("MONGO_URI:", process.env.MONGO_URI ? "Set" : "Not set");
-console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? "Set" : "Not set");
-console.log("PAYPAL_CLIENT_ID:", process.env.PAYPAL_CLIENT_ID ? "Set" : "Not set");
-console.log("PAYPAL_CLIENT_SECRET:", process.env.PAYPAL_CLIENT_SECRET ? "Set" : "Not set");
-
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -20,6 +12,27 @@ import cryptoRoutes from "./routes/crypto.js";
 import leadershipRoutes from "./routes/leadership.js";
 import staffRoutes from "./routes/staff.js";
 import jobRoutes from "./routes/jobs.js";
+
+// Initialize dotenv
+const dotenvResult = dotenv.config({ path: path.resolve(process.cwd(), ".env") });
+if (dotenvResult.error) {
+  console.error("Error loading .env file:", dotenvResult.error.message);
+  process.exit(1);
+}
+
+// Debug environment variables (development only)
+if (process.env.NODE_ENV !== "production") {
+  console.log("Environment variables loaded:");
+  console.log("PORT:", process.env.PORT || "Not set");
+  console.log("MONGO_URI:", process.env.MONGO_URI ? "Set" : "Not set");
+  console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? `Set (${process.env.STRIPE_SECRET_KEY.slice(0, 8)}...)` : "Not set");
+  console.log("PAYPAL_CLIENT_ID:", process.env.PAYPAL_CLIENT_ID ? "Set" : "Not set");
+  console.log("PAYPAL_CLIENT_SECRET:", process.env.PAYPAL_CLIENT_SECRET ? "Set" : "Not set");
+  console.log("PAYSTACK_SECRET_KEY:", process.env.PAYSTACK_SECRET_KEY ? `Set (${process.env.PAYSTACK_SECRET_KEY.slice(0, 8)}...)` : "Not set");
+  console.log("FLUTTERWAVE_SECRET_KEY:", process.env.FLUTTERWAVE_SECRET_KEY ? "Set" : "Not set");
+  console.log("COINBASE_API_KEY:", process.env.COINBASE_API_KEY ? "Set" : "Not set");
+  console.log("COINBASE_WEBHOOK_SECRET:", process.env.COINBASE_WEBHOOK_SECRET ? "Set" : "Not set");
+}
 
 const app = express();
 
