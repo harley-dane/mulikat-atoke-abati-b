@@ -13,9 +13,9 @@ import leadershipRoutes from "./routes/leadership.js";
 import staffRoutes from "./routes/staff.js";
 import jobRoutes from "./routes/jobs.js";
 
-// Initialize dotenv
+// Initialize dotenv, but don't crash if .env is missing
 const dotenvResult = dotenv.config({ path: path.resolve(process.cwd(), ".env") });
-if (dotenvResult.error) {
+if (dotenvResult.error && process.env.NODE_ENV !== "production") {
   console.error("Error loading .env file:", dotenvResult.error.message);
   process.exit(1);
 }
@@ -89,7 +89,7 @@ app.use("/api/staff", staffRoutes);
 app.use("/api/jobs", jobRoutes);
 
 // Health check endpoint
-app.get("/health", (req, res) => {
+app.use("/health", (req, res) => {
   res.status(200).json({ status: "OK", message: "Server is running" });
 });
 
