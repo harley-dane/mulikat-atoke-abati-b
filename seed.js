@@ -51,9 +51,9 @@ const seedData = async () => {
     const projectImages = [
       `${ASSET_BASE_URL}/assets/proj1.jpg`,
       `${ASSET_BASE_URL}/assets/proj2.jpg`,
-      `${ASSET_BASE_URL}/assets/proj3.jpg`,
-      `${ASSET_BASE_URL}/assets/proj4.jpg`,
-      `${ASSET_BASE_URL}/assets/proj5.jpg`,
+      `${ASSET_BASE_URL}/assets/proj8.mp4`,
+      `${ASSET_BASE_URL}/assets/staf1.mp4`,
+      `${ASSET_BASE_URL}/assets/staf2.mp4`,
       `${ASSET_BASE_URL}/assets/proj6.jpg`,
       `${ASSET_BASE_URL}/assets/proj7.jpg`,
       `${ASSET_BASE_URL}/assets/proj17.jpg`, // Video for Community Clean Energy
@@ -62,8 +62,9 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/proj20.jpg`,
       `${ASSET_BASE_URL}/assets/proj12.jpg`,
       `${ASSET_BASE_URL}/assets/proj13.jpg`,
-      `${ASSET_BASE_URL}/assets/proj14.jpg`,
-      `${ASSET_BASE_URL}/assets/proj19.jpg`,
+      `${ASSET_BASE_URL}/assets/proj23.jpg`,
+      `${ASSET_BASE_URL}/assets/proj21.jpg`,
+      `${ASSET_BASE_URL}/assets/proj25.jpg`,
       
     ];
     const postImages = [
@@ -100,89 +101,104 @@ const seedData = async () => {
         isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[2], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
         isVideo: true,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[3], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
         isVideo: true,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[4], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
         isVideo: true,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[5], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[6], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[7], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[8], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[9], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[10], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[11], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[12], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
       },
       {
-        title: "Community Clean Energy",
-        description: "Implementing solar energy solutions in rural areas.",
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
         image: projectImages[13], // proj8.mp4
         link: "https://mulikat-atoke-abati-f.onrender.com/",
-        isVideo: true,
+        isVideo: false,
+      },
+      {
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
+        image: projectImages[14], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: false,
+      },
+      {
+        title: "our team provides free medical checkups,",
+        description: "Our initiative brings essential healthcare services directly to underserved communities—right where they live..",
+        image: projectImages[15], // proj8.mp4
+        link: "https://mulikat-atoke-abati-f.onrender.com/",
+        isVideo: false,
       }
+      
       
       
     ];
