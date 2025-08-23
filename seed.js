@@ -307,30 +307,26 @@ const seedData = async () => {
         pdfLink: `${ASSET_BASE_URL}/assets/2024-annual-report.pdf`,
         year: 2024,
         spendingDetails: [
-          {
-            category: "Staff Salaries",
-            amount: 18000000,
-            description: "Salaries for 20 full-time staff members supporting community outreach and project management.",
-          },
+         
           {
             category: "Medical Supplies",
             amount: 12000000,
             description: "Procurement of medicines and medical equipment for free community health checkups.",
           },
           {
-            category: "Wheelchairs for the Disabled",
-            amount: 8000000,
-            description: "Purchase and distribution of 100 wheelchairs to support mobility for disabled individuals.",
-          },
-          {
-            category: "Education Scholarships",
+            category: "Food Supplies",
             amount: 7000000,
-            description: "Scholarships for 50 students in rural schools to cover tuition and supplies.",
+            description: "Provided food supplies to homeless and vulnerable families in need.",
           },
           {
             category: "Administrative Costs",
             amount: 3000000,
             description: "Office expenses, utilities, and operational costs for the foundation.",
+          },
+           {
+            category: "Staff Salaries",
+            amount: 12000000,
+            description: "Salaries for 8 full-time staff and 7 temporary staff supporting community outreach and project management.",
           },
         ],
       },

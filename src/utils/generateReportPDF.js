@@ -142,10 +142,10 @@ const generateReportPDF = (report, outputPath) => {
         .fillColor(gray)
         .text("Key achievements made possible by your support:", 50, 100);
       doc.moveDown();
-      doc.text("- Distributed 100 wheelchairs to enhance mobility for disabled individuals.");
-      doc.text("- Provided scholarships for 50 students in rural schools.");
-      doc.text("- Delivered free medical checkups and supplies to underserved communities.");
-      doc.text("- Employed 20 full-time staff to manage and expand our programs.");
+      doc.text("- Delivered free medical checkups  eg (blood pressure checks, etc.) and supplies medications to underserved communities.");
+      doc.text("- Provided food supplies to homeless and vulnerable families in need.");
+      doc.text("- Administrative costs covered to ensure smooth operations.");
+      doc.text("- Employed 5 full-time staff and temporary workers to manage and expand our programs.");
 
       // New Page: Conclusion
       doc.addPage();
