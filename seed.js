@@ -69,6 +69,8 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/proj23.jpg`,
       `${ASSET_BASE_URL}/assets/proj21.jpg`,
       `${ASSET_BASE_URL}/assets/proj25.jpg`,
+      `${ASSET_BASE_URL}/assets/proj24.jpg`
+      
     ];
     const postImages = [
       `${ASSET_BASE_URL}/assets/proj3.jpg`,
@@ -200,6 +202,13 @@ const seedData = async () => {
         link: "https://mulikat-atoke-abati-b.onrender.com/",
         isVideo: false,
       },
+      {
+        title: "Bana for Activities that took Place in 2024 at Asiwaju Bola Hamed Tinubu Primary Health Center",
+        description: "Providing nutritional support to vulnerable populations.",
+        image: projectImages[16],
+        link: "https://mulikat-atoke-abati-b.onrender.com/",
+        isVideo: false,
+      }
     ];
     await Project.insertMany(projects);
     console.log("Seeded Projects");
