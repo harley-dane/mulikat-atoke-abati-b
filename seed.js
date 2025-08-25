@@ -80,7 +80,6 @@ const seedData = async () => {
       `${ASSET_BASE_URL}/assets/mojeed.jpg`,
       `${ASSET_BASE_URL}/assets/yemisi.jpg`,
       `${ASSET_BASE_URL}/assets/Abimbola.jpg`,
-      `${ASSET_BASE_URL}/assets/harley.png`,
       `${ASSET_BASE_URL}/assets/aliu.png`,
     ];
     const staffImages = [
@@ -248,12 +247,6 @@ const seedData = async () => {
         position: "Co-Founder",
         bio: "Abimbola Abati is a founding member, contributing to the foundation’s mission since its start.",
         image: leadershipImages[2],
-      },
-      {
-        name: "Harley Clair",
-        position: "Co-Founder",
-        bio: "Harley Clair supports the foundation’s strategic initiatives and community outreach.",
-        image: leadershipImages[3],
       },
       {
         name: "Aliu Abati",
